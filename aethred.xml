@@ -1,0 +1,15 @@
+<lingua>
+  <pattern regex=".*pity.*">
+    <response>I pity the fool!</response>
+  </pattern>
+  <pattern regex=".*(?:mr\. t)|(?:iced tea)|(?:fool).*">
+    <response>If you&apos;re not somebody, then you&apos;re gonna be somebody&apos;s fool!</response>
+    <response>I pity fool!</response>
+    <response>I pity the fool, thug, or soul who don&apos;t respect his mama!</response>
+  </pattern>
+  <default>
+    <response>Albatross!</response>
+    <response>Burbon!</response>
+    <response>Well, hello, Mr. Fancy Pants!</response>
+  </default>
+</lingua>
