@@ -5,7 +5,17 @@
   <pattern regex=".*(?:mr\. t)|(?:iced tea)|(?:fool).*">
     <response>If you&apos;re not somebody, then you&apos;re gonna be somebody&apos;s fool!</response>
     <response>I pity fool!</response>
-    <response>I pity the fool, thug, or soul who don&apos;t respect his mama!</response>
+    <response>I pity the fool, thug, or soul who doesn&apos;t respect his mama!</response>
+  </pattern>
+  <pattern regex=".*test.*">
+    <response>
+      <multiline>
+        <line>Test</line>
+        <line>1</line>
+        <line>2</line>
+        <line>3</line>
+      </multiline>
+    </response>
   </pattern>
   <default>
     <response>Albatross!</response>
