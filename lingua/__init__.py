@@ -21,8 +21,7 @@ def parse(file_name):
         responses = []
 
         for rtype in dtype.findall('response'):
-            if rtype:
-                responses.append(parse_response(rtype[0]))
+            responses.append(parse_response(rtype))
 
         default = Default(responses=responses)
 
@@ -68,10 +67,6 @@ class Brain(threading.Thread):
 
             time.sleep(10)
 
-class LinguaTag:
-    def get_response(self):
-        return None
-
 class Lingua:
     def __init__(self, default, patterns):
         self.default = default
@@ -83,6 +78,10 @@ class Lingua:
             if m:
                 return pattern.get_response()
         return self.default.get_response()
+
+class LinguaTag:
+    def get_response(self):
+        return None
 
 class Default(LinguaTag):
     def __init__(self, responses):

@@ -7,6 +7,6 @@ aethred.start()
 while not aethred.get_brain():
     time.sleep(5)
 
-print(aethred.get_brain().get_response('test'))
+print(aethred.get_brain().get_response('blah'))
 
 aethred.stop_running()
