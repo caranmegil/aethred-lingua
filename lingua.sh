@@ -1,2 +1,4 @@
 export FLASK_APP=start.py
-./bin/flask run
+export PORT=2000
+
+bin/flask run --port ${PORT}
