@@ -16,8 +16,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def getResponse():
-    obj = json.loads(request.get_data())
-    print(obj)
+    obj = json.loads(request.get_data().decode())
     if obj and obj['text']:
         resp = aethred.get_brain().get_response(text=obj['text'])
         ret_obj = {}

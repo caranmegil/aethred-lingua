@@ -21,5 +21,11 @@
     <response>Albatross!</response>
     <response>Burbon!</response>
     <response>Well, hello, Mr. Fancy Pants!</response>
+    <response>
+      <multiline>
+        <line>I got news for you pal.  You're leading two things right now.  Jack and shit.</line>
+        <line>And jack left town.</line>
+      </multiline>
+    </response>
   </default>
 </lingua>
