@@ -1,6 +1,7 @@
 import re, random, threading, time
 import xml.etree.ElementTree
 import os
+import requests
 
 def parse_response(rtype):
     mtype = rtype.findall('multiline')
@@ -10,7 +11,11 @@ def parse_response(rtype):
             lines.append(ltype.text)
         return Response(response=Multiline(lines=lines))
     else:
-        return Response(response=rtype.text)
+        splorks = rtype.findall('splork')
+        if splorks:
+            return Response(response=Splork())
+        else:
+            return Response(response=rtype.text)
 
 def parse(file_name):
     e = xml.etree.ElementTree.parse(file_name).getroot()
@@ -100,6 +105,8 @@ class Response(LinguaTag):
     def get_response(self):
         if type(self.response) is Multiline:
             return self.response.get_response()
+        elif type(self.response) is Splork:
+            return self.response.get_response()
         return self.response
 
 class Pattern(LinguaTag):
@@ -117,3 +124,11 @@ class Multiline(LinguaTag):
 
     def get_response(self):
         return self.lines
+
+class Splork(LinguaTag):
+    def __init__(self):
+        pass
+    def get_response(self):
+        r = requests.get('https://www.nerderium.com/splork/message')
+        print(r)
+        return r.json()['message']

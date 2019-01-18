@@ -7,6 +7,11 @@
     <response>I pity fool!</response>
     <response>I pity the fool, thug, or soul who doesn&apos;t respect his mama!</response>
   </pattern>
+  <pattern regex=".*splork.*">
+    <response>
+      <splork />
+    </response>
+  </pattern>
   <pattern regex=".*test.*">
     <response>
       <multiline>
