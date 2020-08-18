@@ -129,6 +129,6 @@ class Splork(LinguaTag):
     def __init__(self):
         pass
     def get_response(self):
-        r = requests.get('https://www.nerderium.com/splork/message')
+        r = requests.get('https://us-central1-splork-d5014.cloudfunctions.net/backend')
         print(r)
         return r.json()['message']

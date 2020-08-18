@@ -23,6 +23,7 @@
     </response>
   </pattern>
   <default>
+    <response>In accordance with prophecy!</response>
     <response>Albatross!</response>
     <response>Burbon!</response>
     <response>Well, hello, Mr. Fancy Pants!</response>
