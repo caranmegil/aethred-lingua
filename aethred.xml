@@ -1,10 +1,33 @@
 <lingua>
-  <pattern regex=".*pity.*">
+  <pattern regex=".*(?:bitch).*">
+    <response>You son of a bitch!</response>
+  </pattern>
+  <pattern regex=".*(?:(?:happy)|(?:joy)).*">
+    <response>Happy, happy!  Joy, joy!</response>
+  </pattern>
+  <pattern regex=".*trump.*">
+    <response>whoo!</response>
+    <response>Make America great again!</response>
+    <response>Trump sucks!</response>
+  </pattern>
+  <pattern regex=".*pants.*">
+    <response>I have misplaced my pants!</response>
+  </pattern>
+  <pattern regex=".*deserve.*">
+    <response>Every Good Boy Deserves Fudge</response>
+    <response>Many that live deserve death. And some that die deserve life.  Can you give it to them? Then do not be too eager to deal out death in judgement.</response>
+  </pattern>
+  <pattern regex=".*slag.*">
+    <response><ref id="pity"/></response>
+  </pattern>
+  <pattern id="pity" regex=".*pity.*">
+    <response>Pity? It was Pity that stayed his (Bilbo&apos;s) hand. Pity, and Mercy: not to strike without need.</response>
+    <response>I pity him, too!</response>
     <response>I pity the fool!</response>
   </pattern>
   <pattern regex=".*(?:mr\. t)|(?:iced tea)|(?:fool).*">
     <response>If you&apos;re not somebody, then you&apos;re gonna be somebody&apos;s fool!</response>
-    <response>I pity fool!</response>
+    <response>I pity him, too!</response>
     <response>I pity the fool, thug, or soul who doesn&apos;t respect his mama!</response>
   </pattern>
   <pattern regex=".*splork.*">
@@ -23,6 +46,7 @@
     </response>
   </pattern>
   <default>
+    <response><splork/></response>
     <response>In accordance with prophecy!</response>
     <response>Albatross!</response>
     <response>Burbon!</response>

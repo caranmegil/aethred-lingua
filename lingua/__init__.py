@@ -10,6 +10,10 @@ def parse_response(rtype):
         for ltype in mtype[0].findall('line'):
             lines.append(ltype.text)
         return Response(response=Multiline(lines=lines))
+    elif rtype.findall('ref'):
+        for rrtype in rtype.findall('ref'):
+            id = rrtype.get('id')
+            return Response(response=Ref(id=id))
     else:
         splorks = rtype.findall('splork')
         if splorks:
@@ -21,6 +25,7 @@ def parse(file_name):
     e = xml.etree.ElementTree.parse(file_name).getroot()
     patterns = []
     default = None
+    mappings = {}
 
     for dtype in e.findall('default'):
         responses = []
@@ -33,12 +38,16 @@ def parse(file_name):
     for ptype in e.findall('pattern'):
         responses = []
         regex = ptype.get('regex')
+        id = ptype.get('id')
 
         for rtype in ptype.findall('response'):
             responses.append(parse_response(rtype))
 
-        patterns.append(Pattern(regex=regex, responses=responses))
-    return Lingua(default=default, patterns=patterns)
+        pattern = Pattern(regex=regex, responses=responses)
+        patterns.append(pattern)
+        if not id == None:
+            mappings[id] = pattern
+    return Lingua(default=default, patterns=patterns, mappings=mappings)
 
 class Brain(threading.Thread):
     def __init__(self, file_name):
@@ -75,60 +84,72 @@ class Brain(threading.Thread):
             time.sleep(10)
 
 class Lingua:
-    def __init__(self, default, patterns):
+    def __init__(self, default, patterns, mappings):
         self.default = default
         self.patterns = patterns
+        self.mappings = mappings
 
     def get_response(self, text):
         for pattern in self.patterns:
             m = pattern.regex.match(text)
             if m:
-                return pattern.get_response()
-        return self.default.get_response()
+                return pattern.get_response(self.mappings)
+        return self.default.get_response(self.mappings)
 
 class LinguaTag:
-    def get_response(self):
+    def get_response(self, mappings):
         return None
 
 class Default(LinguaTag):
     def __init__(self, responses):
         self.responses = responses
 
-    def get_response(self):
+    def get_response(self, mappings):
         response = random.choice(self.responses)
-        return response.get_response()
+        return response.get_response(mappings)
 
 class Response(LinguaTag):
     def __init__(self, response):
         self.response = response
 
-    def get_response(self):
+    def get_response(self, mappings):
         if type(self.response) is Multiline:
-            return self.response.get_response()
+            return self.response.get_response(mappings)
         elif type(self.response) is Splork:
-            return self.response.get_response()
+            return self.response.get_response(mappings)
+        elif type(self.response) is Ref:
+            return self.response.get_response(mappings)
         return self.response
+
+class Ref(LinguaTag):
+    def __init__(self, id):
+        self.id = id
+
+    def get_response(self, mappings):
+        print(mappings)
+        response = mappings[self.id]
+        return response.get_response(mappings)
 
 class Pattern(LinguaTag):
     def __init__(self, regex, responses):
         self.regex = re.compile(regex)
         self.responses = responses
 
-    def get_response(self):
+    def get_response(self, mappings):
         response = random.choice(self.responses)
-        return response.get_response()
+        return response.get_response(mappings)
 
 class Multiline(LinguaTag):
     def __init__(self, lines):
         self.lines = lines
 
-    def get_response(self):
+    def get_response(self, mappings):
         return self.lines
 
 class Splork(LinguaTag):
     def __init__(self):
         pass
-    def get_response(self):
-        r = requests.get('https://us-central1-splork-d5014.cloudfunctions.net/backend')
+    def get_response(self, mappings):
+        r = requests.get('https://splork.herokuapp.com/message')
         print(r)
         return r.json()['message']
