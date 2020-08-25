@@ -26,6 +26,7 @@ def parse(file_name):
     patterns = []
     default = None
     mappings = {}
+    blocks = []
 
     for dtype in e.findall('default'):
         responses = []
@@ -35,6 +36,18 @@ def parse(file_name):
 
         default = Default(responses=responses)
 
+    for btype in e.findall('block'):
+        id = btype.get('id')
+        responses = []
+
+        for rtype in btype.findall('response'):
+            responses.append(parse_response(rtype))
+
+        if not id == None:
+           block = Block(responses = responses)
+           blocks.append(block)
+           mappings[id] = block
+ 
     for ptype in e.findall('pattern'):
         responses = []
         regex = ptype.get('regex')
@@ -47,7 +60,7 @@ def parse(file_name):
         patterns.append(pattern)
         if not id == None:
             mappings[id] = pattern
-    return Lingua(default=default, patterns=patterns, mappings=mappings)
+    return Lingua(default=default, patterns=patterns, mappings=mappings, blocks=blocks)
 
 class Brain(threading.Thread):
     def __init__(self, file_name):
@@ -74,7 +87,7 @@ class Brain(threading.Thread):
             file_time = os.path.getmtime(self.file_name)
 
             if not self.last_parsed_time or self.last_parsed_time < file_time:
-                print('parsing')
+                irint('parsing')
                 self.brain_lock.acquire()
                 self.brain = parse(self.file_name)
                 self.last_parsed_time = file_time
@@ -84,10 +97,11 @@ class Brain(threading.Thread):
             time.sleep(10)
 
 class Lingua:
-    def __init__(self, default, patterns, mappings):
+    def __init__(self, default, patterns, mappings={}, blocks=None):
         self.default = default
         self.patterns = patterns
         self.mappings = mappings
+        self.blocks = blocks
 
     def get_response(self, text):
         for pattern in self.patterns:
@@ -126,13 +140,20 @@ class Ref(LinguaTag):
         self.id = id
 
     def get_response(self, mappings):
-        print(mappings)
         response = mappings[self.id]
         return response.get_response(mappings)
 
 class Pattern(LinguaTag):
     def __init__(self, regex, responses):
         self.regex = re.compile(regex)
+        self.responses = responses
+
+    def get_response(self, mappings):
+        response = random.choice(self.responses)
+        return response.get_response(mappings)
+
+class Block(LinguaTag):
+    def __init__(self, responses):
         self.responses = responses
 
     def get_response(self, mappings):

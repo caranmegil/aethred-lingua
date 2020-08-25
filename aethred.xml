@@ -10,6 +10,13 @@
     <response>Make America great again!</response>
     <response>Trump sucks!</response>
   </pattern>
+  <block id="albatross">
+    <response>Albatross!  Get your albatross!</response>
+  </block>
+
+  <pattern regex=".*albatross.*">
+    <response><ref id="albatross"/></response>
+  </pattern>
   <pattern regex=".*pants.*">
     <response>I have misplaced my pants!</response>
   </pattern>
