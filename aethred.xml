@@ -13,7 +13,15 @@
   <block id="albatross">
     <response>Albatross!  Get your albatross!</response>
   </block>
-
+  <pattern regex=".*dragon.*" id="dragon">
+    <response>
+      <multiline>
+        <line>The dragon says: cheese!</line>
+        <line>The dragon says: kaese!</line>
+      </multiline>
+    </response>
+    <response>There be dragons!</response>
+  </pattern>
   <pattern regex=".*albatross.*">
     <response><ref id="albatross"/></response>
   </pattern>
@@ -43,6 +51,7 @@
     </response>
   </pattern>
   <pattern regex=".*test.*">
+    <response>Testing...testing!</response>
     <response>
       <multiline>
         <line>Test</line>
@@ -56,6 +65,7 @@
     <response>The force is not strong with you.</response>
   </pattern>
   <default>
+    <response><ref id="dragon"/></response>
     <response><ref id="force"/></response>
     <response><ref id="pity"/></response>
     <response><ref id="albatross"/></response>
