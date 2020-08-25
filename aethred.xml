@@ -7,7 +7,7 @@
   </pattern>
   <pattern regex=".*trump.*">
     <response>whoo!</response>
-    <response>Make America great again!</response>
+    <response>Make America &quot;great&quot; again!</response>
     <response>Trump sucks!</response>
   </pattern>
   <block id="albatross">
@@ -52,7 +52,13 @@
       </multiline>
     </response>
   </pattern>
+  <pattern regex=".*force.*" id="force">
+    <response>The force is not strong with you.</response>
+  </pattern>
   <default>
+    <response><ref id="force"/></response>
+    <response><ref id="pity"/></response>
+    <response><ref id="albatross"/></response>
     <response><splork/></response>
     <response>In accordance with prophecy!</response>
     <response>Albatross!</response>

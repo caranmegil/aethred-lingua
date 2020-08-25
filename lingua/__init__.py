@@ -87,7 +87,7 @@ class Brain(threading.Thread):
             file_time = os.path.getmtime(self.file_name)
 
             if not self.last_parsed_time or self.last_parsed_time < file_time:
-                irint('parsing')
+                print('parsing')
                 self.brain_lock.acquire()
                 self.brain = parse(self.file_name)
                 self.last_parsed_time = file_time
