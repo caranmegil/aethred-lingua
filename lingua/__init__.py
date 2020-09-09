@@ -145,7 +145,7 @@ class Ref(LinguaTag):
 
 class Pattern(LinguaTag):
     def __init__(self, regex, responses):
-        self.regex = re.compile(regex)
+        self.regex = re.compile(regex, re.IGNORECASE)
         self.responses = responses
 
     def get_response(self, mappings):

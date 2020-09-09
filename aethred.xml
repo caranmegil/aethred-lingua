@@ -2,11 +2,27 @@
   <pattern regex=".*(?:bitch).*">
     <response>You son of a bitch!</response>
   </pattern>
+  <pattern regex=".*fuck you.*">
+    <response>F...f!  Well, fuck you, too, buddy!</response>
+  </pattern>
+  <pattern regex=".*(?:poop|shit).*">
+    <response>That's potty talk!</response>
+    <response>Poop...poop-a-doop!</response>
+    <response>You're nasty!</response>
+    <response><splork/></response>
+  </pattern>
+  <pattern regex=".*fight.*">
+    <response>Them&apos;s fightin&apos; words!</response>
+    <response>Street Fightin&apos; Man!  G-seveeeen!</response>
+  </pattern>
   <pattern regex=".*(?:(?:happy)|(?:joy)).*">
     <response>Happy, happy!  Joy, joy!</response>
   </pattern>
+  <pattern regex=".*maga.*">
+    <response>Why must you fill this place with poison?</response>
+  </pattern>
   <pattern regex=".*trump.*">
-    <response>whoo!</response>
+    <response>Whoo?</response>
     <response>Make America &quot;great&quot; again!</response>
     <response>Trump sucks!</response>
   </pattern>
@@ -65,6 +81,7 @@
     <response>The force is not strong with you.</response>
   </pattern>
   <default>
+    <response><splork /></response>
     <response><ref id="dragon"/></response>
     <response><ref id="force"/></response>
     <response><ref id="pity"/></response>
