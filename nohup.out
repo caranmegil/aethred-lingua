@@ -850,3 +850,22 @@ Killed
    Use a production WSGI server instead.
  * Debug mode: off
  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+127.0.0.1 - - [09/Sep/2020 12:20:11] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:20:14] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:20:30] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:20:31] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:20:51] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:21:08] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:21:12] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:23:09] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:23:11] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:23:12] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 12:23:13] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 14:46:32] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [09/Sep/2020 20:28:23] "[37mPOST / HTTP/1.0[0m" 200 -
+Killed
+ * Serving Flask app "start.py"
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off

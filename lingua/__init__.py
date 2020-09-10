@@ -2,6 +2,9 @@ import re, random, threading, time
 import xml.etree.ElementTree
 import os
 import requests
+import consul
+
+c = consul.Consul()
 
 def parse_response(rtype):
     mtype = rtype.findall('multiline')
@@ -22,7 +25,8 @@ def parse_response(rtype):
             return Response(response=rtype.text)
 
 def parse(file_name):
-    e = xml.etree.ElementTree.parse(file_name).getroot()
+    index, data = c.kv.get('aethred/personality')
+    e = xml.etree.ElementTree.fromstring(data['Value'])
     patterns = []
     default = None
     mappings = {}
@@ -94,7 +98,7 @@ class Brain(threading.Thread):
                 self.brain_lock.release()
                 print('done parsing')
 
-            time.sleep(10)
+            time.sleep(20)
 
 class Lingua:
     def __init__(self, default, patterns, mappings={}, blocks=None):
