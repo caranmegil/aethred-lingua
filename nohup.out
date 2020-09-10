@@ -883,3 +883,44 @@ Killed
    Use a production WSGI server instead.
  * Debug mode: off
  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+127.0.0.1 - - [10/Sep/2020 18:00:57] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:00:58] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:00:59] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:00:59] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:00] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:01] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:01] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:04] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:05] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:06] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:07] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:08] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:22] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:23] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:25] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:27] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:28] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:29] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:32] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:34] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:35] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:36] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:38] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:42] "[37mPOST / HTTP/1.0[0m" 200 -
+127.0.0.1 - - [10/Sep/2020 18:01:43] "[37mPOST / HTTP/1.0[0m" 200 -
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/threading.py", line 917, in _bootstrap_inner
+    self.run()
+  File "/home/pi/aethred-lingua/lingua/__init__.py", line 96, in run
+    self.brain = parse()
+  File "/home/pi/aethred-lingua/lingua/__init__.py", line 30, in parse
+    data = get_data()
+  File "/home/pi/aethred-lingua/lingua/__init__.py", line 27, in get_data
+    return data['Value']
+TypeError: 'NoneType' object is not subscriptable
+
+192.168.86.236 - - [10/Sep/2020 18:28:23] "[31m[1mGET / HTTP/1.1[0m" 405 -
+192.168.86.236 - - [10/Sep/2020 18:28:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [10/Sep/2020 18:29:04] "[37mPOST / HTTP/1.0[0m" 200 -
+Killed

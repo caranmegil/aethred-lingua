@@ -1,0 +1,14 @@
+[Unit]
+Description=The Lingua service for Aethred
+After=network.target
+
+[Service]
+ExecStart=/home/pi/aethred-lingua/lingua.sh
+WorkingDirectory=/home/pi/aethred-lingua
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
