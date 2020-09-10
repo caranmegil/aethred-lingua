@@ -1,3 +1,5 @@
+#!/bin/sh
+
 export FLASK_APP=start.py
 export PORT=2000
 

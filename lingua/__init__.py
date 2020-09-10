@@ -1,6 +1,5 @@
 import re, random, threading, time
 import xml.etree.ElementTree
-import os
 import requests
 import consul
 
@@ -23,10 +22,15 @@ def parse_response(rtype):
             return Response(response=Splork())
         else:
             return Response(response=rtype.text)
-
-def parse(file_name):
+def get_data():
     index, data = c.kv.get('aethred/personality')
-    e = xml.etree.ElementTree.fromstring(data['Value'])
+    return data['Value']
+
+def parse():
+    data = get_data()
+    while not data or data == "":
+        data = get_data()
+    e = xml.etree.ElementTree.fromstring(data)
     patterns = []
     default = None
     mappings = {}
@@ -67,11 +71,9 @@ def parse(file_name):
     return Lingua(default=default, patterns=patterns, mappings=mappings, blocks=blocks)
 
 class Brain(threading.Thread):
-    def __init__(self, file_name):
+    def __init__(self):
         threading.Thread.__init__(self)
         self.brain = None
-        self.file_name = file_name
-        self.last_parsed_time = None
         self.is_running = False
         self.brain_lock = threading.Lock()
 
@@ -88,15 +90,12 @@ class Brain(threading.Thread):
 
     def run(self):
         while self.is_running:
-            file_time = os.path.getmtime(self.file_name)
 
-            if not self.last_parsed_time or self.last_parsed_time < file_time:
-                print('parsing')
-                self.brain_lock.acquire()
-                self.brain = parse(self.file_name)
-                self.last_parsed_time = file_time
-                self.brain_lock.release()
-                print('done parsing')
+            print('parsing')
+            self.brain_lock.acquire()
+            self.brain = parse()
+            self.brain_lock.release()
+            print('done parsing')
 
             time.sleep(20)
 
