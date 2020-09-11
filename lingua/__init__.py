@@ -22,14 +22,14 @@ def parse_response(rtype):
             return Response(response=Splork())
         else:
             return Response(response=rtype.text)
+
 def get_data():
     index, data = c.kv.get('aethred/personality')
     return data['Value']
 
 def parse():
     data = get_data()
-    while not data or data == "":
-        data = get_data()
+    print(data)
     e = xml.etree.ElementTree.fromstring(data)
     patterns = []
     default = None
