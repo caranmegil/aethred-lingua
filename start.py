@@ -3,7 +3,7 @@ import lingua
 import json
 import time
 
-aethred = lingua.Brain()
+aethred = lingua.Brain('./aethred.xml')
 aethred.is_running = True
 aethred.start()
 

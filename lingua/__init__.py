@@ -23,13 +23,12 @@ def parse_response(rtype):
         else:
             return Response(response=rtype.text)
 
-def get_data():
-    index, data = c.kv.get('aethred/personality')
-    return data['Value']
+def get_data(file_name):
+    with open(file_name, 'r') as f:
+        return f.read()
 
-def parse():
-    data = get_data()
-    print(data)
+def parse(file_name):
+    data = get_data(file_name)
     e = xml.etree.ElementTree.fromstring(data)
     patterns = []
     default = None
@@ -71,11 +70,12 @@ def parse():
     return Lingua(default=default, patterns=patterns, mappings=mappings, blocks=blocks)
 
 class Brain(threading.Thread):
-    def __init__(self):
+    def __init__(self, file_name):
         threading.Thread.__init__(self)
         self.brain = None
         self.is_running = False
         self.brain_lock = threading.Lock()
+        self.file_name = file_name
 
     def get_brain(self):
         self.brain_lock.acquire()
@@ -93,7 +93,7 @@ class Brain(threading.Thread):
 
             print('parsing')
             self.brain_lock.acquire()
-            self.brain = parse()
+            self.brain = parse(self.file_name)
             self.brain_lock.release()
             print('done parsing')
 
